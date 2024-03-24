@@ -3270,7 +3270,11 @@ static int detectPresence( char const * aExecutable )
 
 #ifdef _GNU_SOURCE /*to bypass this, just comment out "#define _GNU_SOURCE" at the top of the file*/
       if ( lBuff[strlen( lBuff ) -1] == '\n' ) lBuff[strlen( lBuff ) -1] = '\0' ;
+#ifdef __FreeBSD__
+      lAllocatedCharString = (char *) realpath(lBuff,NULL); /*same as canonicalize_file_name*/
+#else
       lAllocatedCharString = realpath(lBuff,NULL); /*same as canonicalize_file_name*/
+#endif
       lSubstringUndetected = ! strstr(lAllocatedCharString, aExecutable);
       free(lAllocatedCharString);
       if (lSubstringUndetected)
