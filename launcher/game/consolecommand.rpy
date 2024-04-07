@@ -74,14 +74,14 @@ init python:
 
             if renpy.windows:
                 self.write("pause")
-            elif renpy.linux:
+            elif renpy.linux or renpy.freebsd:
                 self.add("echo", "Press enter to close this window...")
                 self.write("read")
 
             self.f.close()
             os.chmod(self.fn, 0o755)
 
-            if renpy.linux:
+            if renpy.linux or renpy.freebsd:
                 command = renpy.fsencode('"{}"'.format(self.fn.replace("\"", "\\\"")))
                 subprocess.Popen([ "x-terminal-emulator", "-e", command ])
             else:

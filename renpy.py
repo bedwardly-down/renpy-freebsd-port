@@ -198,6 +198,7 @@ def path_to_saves(gamedir, save_directory=None): # type: (str, str|None) -> str
             rv = "~/RenPy/" + renpy.config.save_directory # type: ignore
             return os.path.expanduser(rv)
 
+    # FreeBSD and Linux targets use the same local location for this
     else:
         rv = "~/.renpy/" + save_directory
         return os.path.expanduser(rv)

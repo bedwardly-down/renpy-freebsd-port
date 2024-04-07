@@ -103,7 +103,7 @@ class SystemEditor(Editor):
                 os.startfile(filename) # type: ignore
             elif renpy.macintosh:
                 subprocess.call([ "open", filename ])
-            elif renpy.linux:
+            elif renpy.linux or renpy.freebsd:
                 subprocess.call([ "xdg-open", filename ])
         except Exception:
             traceback.print_exc()

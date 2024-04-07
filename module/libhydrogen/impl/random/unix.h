@@ -1,12 +1,12 @@
 #include <errno.h>
 #include <fcntl.h>
-#ifdef __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
 #include <poll.h>
 #endif
 #include <sys/types.h>
 #include <unistd.h>
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
 static int
 hydro_random_block_on_dev_random(void)
 {
@@ -62,7 +62,7 @@ hydro_random_init(void)
     int     fd;
     int     ret = -1;
 
-#ifdef __linux__
+#if defined(__linux__) || defined(__FreeBSD__)
     if (hydro_random_block_on_dev_random() != 0) {
         return -1;
     }

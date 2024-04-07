@@ -46,17 +46,29 @@ Compiling the Modules
 ----------------------
 
 Building the modules requires you have the many dependencies installed on
-your system. On Ubuntu and Debian, these dependencies can be installed with
+your system. 
+
+On Ubuntu and Debian, these dependencies can be installed with
 the command::
 
     sudo apt install virtualenvwrapper python3-dev libavcodec-dev libavformat-dev \
         libswresample-dev libswscale-dev libharfbuzz-dev libfreetype6-dev libfribidi-dev libsdl2-dev \
         libsdl2-image-dev libsdl2-gfx-dev libsdl2-mixer-dev libsdl2-ttf-dev libjpeg-dev
 
+On FreeBSD::
+    
+    sudo pkg install python2 python3 python310 py39-virtualenv py310-setuptools py310-wheel \
+        ffmpeg gstreamer1-libav gstreamer1-plugins gstreamer1-plugins-good freetype2 fribidi \
+        gstreamer1-plugins-bad gstreamer1-plugins-ugly sdl2 sdl2_image sdl2_gfx sdl2_mixer \
+        sdl2_ttf jpeg-turbo harfbuzz
+
 Ren'Py requires SDL_image 2.6 or greater. If your distribution doesn't include
 that version, you'll need to download it from:
 
     https://github.com/libsdl-org/SDL_image/tree/SDL2
+
+Official Ren'py Developer Recommendation
+----------------------------------------
 
 We strongly suggest installing the Ren'Py modules into a Python
 virtualenv. To create a new virtualenv, open a new terminal and run::
@@ -69,9 +81,22 @@ To return to this virtualenv later, run::
     . /usr/share/virtualenvwrapper/virtualenvwrapper.sh
     workon renpy
 
+FreeBSD Porter Recommendation
+-----------------------------
+
+I strongly recommend a slightly different approach due to Python conflicts found on
+FreeBSD 14.0 while porting the engine. Some major system packages (such as your Window Manager,
+Desktop Environment and some maintenance tools installed by default if you use any GUI 
+applications) will break if you install both `py39-setuptools` and `py39-wheel` on your 
+system at the time of this port. All of this will be done in the root directory of this 
+source tree::
+    
+    export VENV="./tmp/virtualenv.py3"
+    python3 -m virtualenv -p "/usr/local/bin/python3.10" $VENV
+
 After activating the virtualenv, install additional dependencies::
 
-    pip install -U cython future six typing pefile requests ecdsa
+    python3 -m pip install -U cython future six typing pefile requests ecdsa
 
 Then, install pygame_sdl2 by running the following commands::
 
@@ -112,7 +137,7 @@ link in a nightly build, or compile the modules as described above. You'll
 also need the `Sphinx <https://www.sphinx-doc.org>`_ documentation generator.
 If you have pip working, install Sphinx using::
 
-    pip install -U sphinx sphinx_rtd_theme sphinx_rtd_dark_mode
+    python3 -m pip install -U sphinx sphinx_rtd_theme sphinx_rtd_dark_mode
 
 Once Sphinx is installed, change into the ``sphinx`` directory inside the
 Ren'Py checkout and run::
@@ -176,3 +201,5 @@ License
 For the complete licensing terms, please read:
 
 https://www.renpy.org/doc/html/license.html
+
+For the FreeBSD port license, see LICENSE.rst

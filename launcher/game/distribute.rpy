@@ -67,7 +67,7 @@ init python in distribute:
 def change_renpy_executable():
     import sys, os, renpy, site
 
-    if hasattr(site, "RENPY_PLATFORM") and hasattr(sys, "renpy_executable") and (renpy.linux or renpy.windows):
+    if hasattr(site, "RENPY_PLATFORM") and hasattr(sys, "renpy_executable") and (renpy.linux or renpy.windows or renpy.freebsd):
         sys.renpy_executable = os.path.join(renpy.config.renpy_base, "lib", "py{major}-" + site.RENPY_PLATFORM, os.path.basename(sys.renpy_executable))
 
 change_renpy_executable()
@@ -1071,12 +1071,14 @@ if sys.version_info.major == 2:
                 linux = 'binary'
                 linux_i686 = 'binary'
                 mac = 'binary'
+                freebsd = 'binary'
                 raspi = 'linux_arm'
             else:
                 windows = 'windows'
                 linux = 'linux'
                 linux_i686 = 'linux_i686'
                 mac = 'mac'
+                freebsd = 'freebsd'
                 raspi = 'linux_arm'
 
             prefix = py("lib/py{major}-")
@@ -1093,6 +1095,12 @@ if sys.version_info.major == 2:
                 linux,
                 prefix + "linux-x86_64/" + self.executable_name,
                 os.path.join(config.renpy_base, prefix + "linux-x86_64/renpy"),
+                True)
+
+            self.add_file(
+                freebsd,
+                prefix + "freebsd-x86_64/" + self.executable_name,
+                os.path.join(config.renpy_base, prefix + "freebsd-x86_64/renpy"),
                 True)
 
             armfn = os.path.join(config.renpy_base, prefix + "linux-armv7l/renpy")

@@ -41,6 +41,11 @@ Linux
     installed using your package manager before self-voicing mode will
     work.
 
+FreeBSD
+    On FreeBSD, Ren'Py uses the ``espeak`` command. Espeak may need to be
+    installed using your package manager before self-voicing mode will
+    work.
+
 Android, iOS, Chrome OS
     Self-voicing mode is not supported on Android, iOS, or Chrome OS.
 

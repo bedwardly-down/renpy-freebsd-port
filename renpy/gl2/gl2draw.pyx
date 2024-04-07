@@ -314,7 +314,7 @@ cdef class GL2Draw:
         if renpy.display.interface.safe_mode:
             return default
 
-        if not (renpy.linux or renpy.windows or renpy.macintosh):
+        if not (renpy.linux or renpy.windows or renpy.macintosh or renpy.freebsd):
             return default
 
         if not renpy.game.preferences.restore_window_position:

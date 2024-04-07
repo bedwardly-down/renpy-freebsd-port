@@ -136,12 +136,15 @@ init -1500 python in build:
         # Mac patterns.
         ( "lib/py*-mac-*/**", "mac"),
 
+        # FreeBSD patterns.
+        ( "lib/py*-freebsd-*/**", "freebsd"),
+
         # Old Python library.
         ( "lib/python3.*/**" if PY2 else "lib/python2.*/**", None),
 
         # Shared patterns.
-        ( "lib/**", "windows linux mac android ios"),
-        ( renpy_sh, "linux mac"),
+        ( "lib/**", "windows linux mac freebsd android ios"),
+        ( renpy_sh, "linux mac freebsd"),
     ]))
 
 
@@ -311,6 +314,7 @@ init -1500 python in build:
         "**.sh",
 
         "lib/py*-linux-*/*",
+        "lib/py*-freebsd-*/*",
         "lib/py*-mac-*/*",
 
         "**.app/Contents/MacOS/*",
@@ -421,9 +425,10 @@ init -1500 python in build:
 
     package("pc", "zip", "windows linux renpy all", "PC: Windows and Linux")
     package("linux", "tar.bz2", "linux linux_arm renpy all", "Linux")
+    package("freebsd", "tar.bz2", "freebsd renpy all", "FreeBSD")
     package("mac", "app-zip app-dmg", "mac renpy all", "Macintosh")
     package("win", "zip", "windows renpy all", "Windows")
-    package("market", "bare-zip", "windows linux mac renpy all", "Windows, Mac, Linux for Markets")
+    package("market", "bare-zip", "windows linux mac freebsd renpy all", "Windows, Mac, Linux, FreeBSD for Markets")
 
     package("steam", "zip", "windows linux mac renpy all", hidden=True)
     package("android", "directory", "android all", hidden=True, update=False, dlc=True)

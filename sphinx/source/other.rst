@@ -54,6 +54,10 @@ it's running on.
 
     Has a true value when running on Linux or other POSIX-like operating systems.
 
+.. var:: renpy.freebsd
+
+    Has a true value when running on FreeBSD or other POSIX-like operating systems.
+
 .. var:: renpy.android
 
     Has a true value when running on Android.

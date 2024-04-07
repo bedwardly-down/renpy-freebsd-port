@@ -473,13 +473,13 @@ This change is only required if your game uses Ruby/Furigana text tags.
 8.0.0 / 7.5.0
 -------------
 
-The "Windows, Mac, and Linux for Markets" distribution has been changed to
+The "Windows, Mac, FreeBSD and Linux for Markets" distribution has been changed to
 no longer prefix the contents of the zip file created with the directory
 name and version number. If you'd like to retain the old behavior, add
 to your game::
 
     init python:
-        build.package("market", "zip", "windows linux mac renpy all", "Windows, Mac, Linux for Markets")
+        build.package("market", "zip", "windows linux freebsd mac renpy all", "Windows, Mac, Linux, and FreeBSD for Markets")
 
 For the noalt text tag to work with history, you'll need to edit
 screens.rpy to make sure that :var:`gui.history_allow_tags` contains

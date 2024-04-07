@@ -1,7 +1,7 @@
 #ifndef hydrogen_H
 #define hydrogen_H
 
-#if !(defined(__linux__) && defined(__KERNEL__))
+#if (!(defined(__linux__) && defined(__KERNEL__))) || defined(__FreeBSD__)
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>

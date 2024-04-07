@@ -1954,7 +1954,7 @@ def reload_script():
     save.
 
     This should only be called during development. It works on Windows, macOS,
-    and Linux, but may not work on other platforms.
+    FreeBSD, and Linux, but may not work on other platforms.
     """
 
     # Avoid reloading in a replay.

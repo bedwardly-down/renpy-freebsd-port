@@ -93,10 +93,12 @@ version_tuple = VersionTuple(*(int(i) for i in version.split(".")))
 # A string giving the version number only (8.0.1.123), with a suffix if needed.
 version_only = ".".join(str(i) for i in version_tuple)
 
-if not official:
+if not official or sys.platform.startswith('freebsd'):
     version_only += "+unofficial"
 elif nightly:
     version_only += "+nightly"
+elif sys.platform.startswith('freebsd'):
+    version_only += "-FreeBSD"
 
 # A verbose string giving the version.
 version = "Ren'Py " + version_only
@@ -116,6 +118,7 @@ bytecode_version = 1
 windows = False
 macintosh = False
 linux = False
+freebsd = False
 android = False
 ios = False
 emscripten = False
@@ -172,6 +175,8 @@ elif "ANDROID_PRIVATE" in os.environ:
     android = True
 elif sys.platform == 'emscripten' or "RENPY_EMSCRIPTEN" in os.environ:
     emscripten = True
+elif sys.platform.startswith('freebsd'):
+    freebsd = True
 else:
     linux = True
 

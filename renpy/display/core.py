@@ -944,7 +944,7 @@ class Interface(object):
         Called when the player moves the window.
         """
 
-        if not (renpy.windows or renpy.macintosh or renpy.linux):
+        if not (renpy.windows or renpy.macintosh or renpy.linux or renpy.freebsd):
             return
 
         if renpy.game.preferences.fullscreen or renpy.game.preferences.maximized:

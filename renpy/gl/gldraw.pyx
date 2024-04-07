@@ -336,7 +336,7 @@ cdef class GLDraw:
             round(min(bound_w / virtual_ar, bound_h)),
             )
 
-        if renpy.windows or renpy.linux or renpy.macintosh:
+        if renpy.windows or renpy.linux or renpy.macintosh or renpy.freebsd:
 
             # Are we maximized?
             old_surface = pygame.display.get_surface()

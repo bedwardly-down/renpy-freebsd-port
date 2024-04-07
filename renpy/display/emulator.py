@@ -180,6 +180,7 @@ def early_init_emulator():
 
         renpy.exports.windows = False # type: ignore
         renpy.exports.linux = False # type: ignore
+        renpy.exports.freebsd = False # type: ignore
         renpy.exports.macintosh = False # type: ignore
         renpy.exports.web = False # type: ignore
         renpy.exports.android = renpy.exports.variant("android") # type: ignore

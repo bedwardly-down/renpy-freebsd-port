@@ -120,7 +120,7 @@ def default_tts_function(s):
 
         process = subprocess.Popen([ os.environ["RENPY_TTS_COMMAND"], fsencode(s) ])
 
-    elif renpy.linux:
+    elif renpy.linux or renpy.freebsd:
 
         cmd = [ "espeak", "-a", fsencode(str(amplitude_100)) ]
 

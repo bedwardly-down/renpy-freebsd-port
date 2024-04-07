@@ -18,6 +18,9 @@ Linux
     the 32-bit and 64-bit ARM version of Ren'Py, if present. (These
     are found in the sdkarm Ren'Py package.)
 
+FreeBSD
+    A tar.bz2 file targeting FreeBSD x86_64.
+
 Macintosh
     A zip file containing a Macintosh application targeting macOS
     OS X on Intel and Apple Silicon processors. Game data will be
@@ -41,6 +44,8 @@ Windows, Mac, and Linux for Markets
 
     Unpacking and re-packing a zip file on Windows and then running it
     on Linux or Macintosh is not supported.
+
+    Applies to alternative Unix platforms too
 
 Basic Configuration
 -------------------
@@ -140,6 +145,8 @@ all
     builds.
 linux
     These files will be included in packages targeting Linux.
+freebsd
+    These files will be included in packages targeting FreeBSD.
 mac
     These files will be included in packages targeting Macintosh.
 windows
@@ -216,7 +223,7 @@ containing bonus material. We could classify the bonus files in to a
     build.classify("game/bonus/**", "bonus_archive")
 
     # Declare the package.
-    build.package("all-premium", "zip", "windows mac linux renpy all bonus")
+    build.package("all-premium", "zip", "windows mac linux freebsd renpy all bonus")
 
 Supported package types are "zip" and "tar.bz2" to generate files in
 those formats, and "directory" to create a directory filled with
@@ -439,12 +446,13 @@ The following variables provide further control of the build process:
     the itch channel the file should be uploaded to. This defaults to::
 
         {
-            "*-all.zip" : "win-osx-linux",
-            "*-market.zip" : "win-osx-linux",
+            "*-all.zip" : "win-osx-linux-freebsd",
+            "*-market.zip" : "win-osx-linux-freebsd",
             "*-pc.zip" : "win-linux",
             "*-win.zip" : "win",
             "*-mac.zip" : "osx",
             "*-linux.tar.bz2" : "linux",
+            "*-freebsd.tar.bz2" : "freebsd",
             "*-release.apk" : "android",
         }
 
